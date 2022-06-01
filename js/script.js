@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Johanna Liu All rights reserved
+// Copyright (c) 2022 Johanna Liu All rights reserved
 //
 // Created by: Johanna Liu
 // Created on: Mar 2022
@@ -7,26 +7,31 @@
 /**
  * Check servie worker.
  */
-if (navigator.serviceWorker) {
+ if (navigator.serviceWorker) {
   navigator.serviceWorker.register("/ICS2O-PWA-Test/sw.js", {
     scope: "/ICS2O-PWA-Test/",
   })
 }
 
 ;("use strict")
+
 /**
- * This function calculates area of a parrallelogram.
+ * This function calculates the volume of a sphere.
  */
-function calculate() {
+window.onload = function() {
+  // this calculates volume of a pyramid
+
+  const params = new URLSearchParams(document.location.search)
+
   // input
-  const length = parseInt(document.getElementById("length-of-pyramid").value)
-  const width = parseInt(document.getElementById("width-of-pyramid").value)
-  const height = parseInt(document.getElementById("height-of-pyramid").value)
+  const radius = params.get('radius')
+  console.log(radius)
 
   // process
-  const volume = (length * width * height) / 3
+  const volume = ( 4/3 * Math.PI * Math.pow(radius, 3))
+  const dimensions = "<ul>\n<li>radius = " + radius + "</li>\n</ul>"
 
   // output
-  document.getElementById("answers").innerHTML =
-    "Volume is: " + volume.toFixed(2) + " cm³"
+  document.getElementById('dimensions').innerHTML = dimensions
+  document.getElementById('volume').innerHTML = 'Volume is: ' + volume.toFixed(2) + ' cm³'
 }
